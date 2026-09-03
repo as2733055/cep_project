@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CodePlay helps beginners learn coding through games and activities.">
+  <title>CodePlay | Learn Coding Through Play</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="CodePlay home"><span class="brand-mark">&lt;/&gt;</span><span>CodePlay</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation">Menu</button>
+      <nav id="main-navigation" class="main-nav" aria-label="Main navigation">
+        <a data-nav="home" href="index.html">Home</a>
+        <a data-nav="learn" href="learn.html">Learn</a>
+        <a data-nav="games" href="games.html">Games</a>
+        <a data-nav="challenges" href="challenges.html">Challenges</a>
+        <a data-nav="quiz" href="quiz.html">Quiz</a>
+        <a data-nav="progress" href="progress.html">Progress</a>
+        <a data-nav="about" href="about.html">About</a>
+      </nav>
+      <div class="header-points" aria-label="Current points"><span aria-hidden="true">&#9733;</span> <span data-points>0</span></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Coding through games and activities</p>
+          <h1>Learn coding.<br><em>Play with logic.</em></h1>
+          <p class="hero-text">Build your coding confidence one small challenge at a time. Learn an idea, try it out, and watch your progress grow.</p>
+          <div class="button-row">
+            <a class="button button-primary" href="learn.html">Start learning <span aria-hidden="true">&#8594;</span></a>
+            <a class="button button-secondary" href="games.html">Explore games</a>
+          </div>
+        </div>
+        <div class="hero-board reveal reveal-delay" aria-label="CodePlay learning cycle">
+          <div class="board-top"><span class="status-dot"></span><span>your learning loop</span><span class="board-code">01</span></div>
+          <div class="cycle-steps">
+            <div class="cycle-step cycle-step-active"><span>01</span><strong>Learn</strong><small>Understand the idea</small></div>
+            <div class="cycle-line"></div>
+            <div class="cycle-step"><span>02</span><strong>Play</strong><small>Try it hands-on</small></div>
+            <div class="cycle-line"></div>
+            <div class="cycle-step"><span>03</span><strong>Solve</strong><small>Think it through</small></div>
+            <div class="cycle-line"></div>
+            <div class="cycle-step"><span>04</span><strong>Progress</strong><small>Earn your next star</small></div>
+          </div>
+          <div class="board-footer"><span>BEGINNER PATH</span><span data-home-lesson-count>0 / 9 lessons</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container dashboard-strip" aria-labelledby="welcome-heading">
+      <div class="student-welcome">
+        <div class="avatar" data-avatar aria-hidden="true">?</div>
+        <div><p class="section-kicker">Your CodePlay space</p><h2 id="welcome-heading">Welcome, <span data-student-name>learner</span></h2></div>
+      </div>
+      <div class="quick-stat"><span class="stat-label">Points</span><strong><span data-points>0</span><small> / 300</small></strong></div>
+      <div class="quick-stat"><span class="stat-label">Lessons</span><strong><span data-lessons-completed>0</span><small> / 9</small></strong></div>
+      <div class="quick-stat progress-stat"><span class="stat-label">Journey progress</span><div class="progress-track"><span data-overall-progress style="width: 0%"></span></div><small data-progress-label>Just getting started</small></div>
+    </section>
+
+    <section class="container feature-section" aria-labelledby="feature-heading">
+      <div class="section-heading"><div><p class="section-kicker">Why CodePlay</p><h2 id="feature-heading">A friendly place to think like a programmer.</h2></div><span class="section-number">01 / 03</span></div>
+      <div class="feature-grid">
+        <article class="feature-card feature-card-coral"><span class="feature-icon" aria-hidden="true">&#9670;</span><h3>Learn by doing</h3><p>Short lessons turn big coding ideas into clear, approachable steps.</p><a href="learn.html" class="text-link">View lessons <span aria-hidden="true">&#8594;</span></a></article>
+        <article class="feature-card feature-card-teal"><span class="feature-icon" aria-hidden="true">&#9671;</span><h3>Build your logic</h3><p>Activities give you room to test ideas, spot patterns, and solve problems.</p><a href="games.html" class="text-link">See activities <span aria-hidden="true">&#8594;</span></a></article>
+        <article class="feature-card feature-card-yellow"><span class="feature-icon" aria-hidden="true">&#9733;</span><h3>Make progress visible</h3><p>Collect points and badges as you move through your coding journey.</p><a href="progress.html" class="text-link">View progress <span aria-hidden="true">&#8594;</span></a></article>
+      </div>
+    </section>
+
+    <section class="journey-band" aria-labelledby="journey-heading">
+      <div class="container journey-grid"><div><p class="section-kicker">The CodePlay method</p><h2 id="journey-heading">Small steps.<br><em>Real momentum.</em></h2></div><ol class="journey-list"><li><span>01</span><strong>Learn</strong><small>Meet a new idea</small></li><li><span>02</span><strong>Play</strong><small>Use it in an activity</small></li><li><span>03</span><strong>Solve</strong><small>Work through a challenge</small></li><li><span>04</span><strong>Earn</strong><small>Collect points and badges</small></li><li><span>05</span><strong>Progress</strong><small>See how far you have come</small></li></ol></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-wrap"><a class="brand" href="index.html"><span class="brand-mark">&lt;/&gt;</span><span>CodePlay</span></a><p>Learn coding. Play with logic.</p></div></footer>
+  <div id="onboarding-modal" class="modal-backdrop" hidden><section class="onboarding-modal" role="dialog" aria-modal="true" aria-labelledby="onboarding-title"><button class="modal-close" type="button" data-close-onboarding aria-label="Close">&times;</button><p class="eyebrow">A new coding journey</p><h2 id="onboarding-title">Welcome to CodePlay! &#128640;</h2><p>What&#39;s your name?</p><form id="onboarding-form"><label for="student-name">Enter your name</label><input id="student-name" name="studentName" type="text" autocomplete="given-name" maxlength="30" required><p class="form-error" data-name-error role="alert"></p><button class="button button-primary" type="submit">Start my coding journey <span aria-hidden="true">&#8594;</span></button></form></section></div>
+  <div class="toast" data-toast role="status" aria-live="polite"></div>
+  <script src="js/storage.js"></script><script src="js/app.js"></script>
+</body>
+</html>
