@@ -1,6 +1,8 @@
 (function () {
   'use strict';
 
+  const config = window.CodePlayConfig;
+
   const lessons = [
     { id: 'lesson-coding', number: '01', title: 'What is Coding?', concept: 'Give clear instructions to solve a problem.', explanation: 'Coding is writing instructions that a computer can follow. Just like people follow a recipe, computers follow steps written in a programming language.', realWorld: 'A recipe tells you what to do, in what order, to make a meal. Code does the same thing for a computer.', visual: ['You', 'write steps', 'Computer', 'follows steps'], activity: { prompt: 'Which one is a set of instructions?', options: ['A recipe for making a sandwich', 'A favourite colour', 'A photograph'], answer: 0, success: 'A recipe is a set of instructions, just like code.' } },
     { id: 'lesson-sequence', number: '02', title: 'Sequence', concept: 'Put instructions in the correct order.', explanation: 'A sequence is a set of steps that happen in order. Computers do not guess what comes next, so the order of instructions matters.', realWorld: 'When brushing your teeth, you put toothpaste on the brush before brushing. Swapping those steps would not work well.', visual: ['Wake up', 'Brush teeth', 'Have breakfast', 'Start the day'], activity: { prompt: 'What should happen first when planting a seed?', options: ['Water the seed', 'Put the seed in soil', 'Wait for a plant'], answer: 1, success: 'The seed needs to go into soil before it can be watered or grow.' } },
@@ -15,18 +17,18 @@
 
   function escapeHtml(value) { return value.replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[character])); }
 
-  function renderVisual(items) { return `<div class="lesson-visual" aria-label="Example: ${items.join(', ')}">${items.map((item, index) => `<span>${escapeHtml(item)}</span>${index < items.length - 1 ? '<b aria-hidden="true">&#8594;</b>' : ''}`).join('')}</div>`; }
+  function renderVisual(items) { return `<div class="lesson-visual" aria-label="Example: ${escapeHtml(items.join(', '))}">${items.map((item, index) => `<span>${escapeHtml(item)}</span>${index < items.length - 1 ? '<b aria-hidden="true">&#8594;</b>' : ''}`).join('')}</div>`; }
 
   function renderLesson(lesson, completed) {
     const options = lesson.activity.options.map((option, index) => `<label class="activity-option"><input type="radio" name="${lesson.id}-answer" value="${index}"><span>${escapeHtml(option)}</span></label>`).join('');
-    return `<article class="lesson-card${completed ? ' is-complete' : ''}" data-lesson-id="${lesson.id}"><div class="lesson-card-heading"><span class="lesson-number">${lesson.number}</span><div><p class="section-kicker">${escapeHtml(lesson.concept)}</p><h2>${escapeHtml(lesson.title)}</h2></div><span class="lesson-state" data-lesson-state>${completed ? '&#10003; Completed' : '+5 points'}</span></div><div class="lesson-content"><div class="lesson-copy"><div><h3>In simple words</h3><p>${escapeHtml(lesson.explanation)}</p></div><div><h3>In real life</h3><p>${escapeHtml(lesson.realWorld)}</p></div></div><div class="lesson-example"><h3>See the idea</h3>${renderVisual(lesson.visual)}</div><div class="lesson-activity"><h3>Quick check</h3><p>${escapeHtml(lesson.activity.prompt)}</p><div class="activity-options">${options}</div><p class="activity-feedback" data-activity-feedback role="status"></p></div><button class="button ${completed ? 'button-complete' : 'button-primary'} complete-lesson" type="button" ${completed ? 'disabled' : ''}>${completed ? 'Lesson completed' : 'Complete lesson & earn 5 points'}</button></div></article>`;
+    return `<article class="lesson-card${completed ? ' is-complete' : ''}" id="${lesson.id}" data-lesson-id="${lesson.id}"><div class="lesson-card-heading"><span class="lesson-number">${lesson.number}</span><div><p class="section-kicker">${escapeHtml(lesson.concept)}</p><h2>${escapeHtml(lesson.title)}</h2></div><span class="lesson-state" data-lesson-state aria-label="${completed ? 'Completed' : 'Lesson reward'}">${completed ? '&#10003; Completed' : `+${config.rewards.lesson} points`}</span></div><div class="lesson-content"><div class="lesson-copy"><div><h3>In simple words</h3><p>${escapeHtml(lesson.explanation)}</p></div><div><h3>In real life</h3><p>${escapeHtml(lesson.realWorld)}</p></div></div><div class="lesson-example"><h3>See the idea</h3>${renderVisual(lesson.visual)}</div><div class="lesson-activity"><h3>Quick check</h3><fieldset class="activity-options"><legend class="visually-hidden">${escapeHtml(lesson.activity.prompt)}</legend>${options}</fieldset><p class="activity-feedback" data-activity-feedback role="status" aria-live="polite"></p></div><button class="button ${completed ? 'button-complete' : 'button-primary'} complete-lesson" type="button" ${completed ? 'disabled' : ''}>${completed ? 'Lesson completed' : `Complete lesson & earn ${config.rewards.lesson} points`}</button></div></article>`;
   }
 
   function refreshSummary() {
     const progress = window.CodePlayStorage.getProgress();
     const completedCount = progress.lessonsCompleted.length;
     document.querySelectorAll('[data-lessons-completed]').forEach((element) => { element.textContent = completedCount; });
-    document.querySelectorAll('[data-lesson-progress]').forEach((element) => { element.style.width = `${Math.round((completedCount / lessons.length) * 100)}%`; });
+    document.querySelectorAll('[data-lesson-progress]').forEach((element) => { const percentage = Math.round((completedCount / config.getLessonCount()) * 100); element.style.width = `${percentage}%`; element.setAttribute('role', 'progressbar'); element.setAttribute('aria-valuemin', '0'); element.setAttribute('aria-valuemax', '100'); element.setAttribute('aria-valuenow', String(percentage)); });
   }
 
   function setupLessons() {
@@ -34,6 +36,11 @@
     if (!list) return;
     const progress = window.CodePlayStorage.getProgress();
     list.innerHTML = lessons.map((lesson) => renderLesson(lesson, progress.lessonsCompleted.includes(lesson.id))).join('');
+    const hash = window.location && window.location.hash;
+    if (hash && typeof document.getElementById === 'function') {
+      const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+      if (target && typeof target.scrollIntoView === 'function') target.scrollIntoView({ block: 'start' });
+    }
     list.addEventListener('click', (event) => {
       const button = event.target.closest('.complete-lesson');
       if (!button || button.disabled) return;
@@ -43,13 +50,13 @@
       const feedback = card.querySelector('[data-activity-feedback]');
       if (!selected) { feedback.textContent = 'Choose an answer for the quick check first.'; return; }
       if (Number(selected.value) !== lesson.activity.answer) { feedback.textContent = 'Not quite yet. Read the lesson and try the quick check again.'; return; }
-      window.CodePlayStorage.completeLesson(lesson.id, 5);
+      window.CodePlayStorage.completeLesson(lesson.id);
       card.classList.add('is-complete'); button.disabled = true; button.className = 'button button-complete complete-lesson'; button.textContent = 'Lesson completed';
       card.querySelector('[data-lesson-state]').innerHTML = '&#10003; Completed'; feedback.textContent = lesson.activity.success;
       refreshSummary();
       document.querySelectorAll('[data-points]').forEach((element) => { element.textContent = window.CodePlayStorage.getProgress().points; });
       const toast = document.querySelector('[data-toast]');
-      if (toast) { toast.textContent = 'Lesson complete! +5 points'; toast.classList.add('is-visible'); window.setTimeout(() => toast.classList.remove('is-visible'), 2800); }
+      if (toast) { toast.textContent = `Lesson complete! +${config.rewards.lesson} points`; toast.classList.add('is-visible'); window.setTimeout(() => toast.classList.remove('is-visible'), 2800); }
     });
   }
 

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://as2733055.github.io/cep_project/sitemap.xml

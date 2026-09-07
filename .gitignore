@@ -1,0 +1,17 @@
+# Local editor settings
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Optional tooling output
+node_modules/
+dist/
+build/
+coverage/
