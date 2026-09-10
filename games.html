@@ -1,10 +1,120 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Play coding games with CodePlay and practice sequence, debugging, and problem solving."><meta name="theme-color" content="#17252a"><meta property="og:type" content="website"><meta property="og:title" content="Games | CodePlay"><meta property="og:description" content="Practice coding logic through Code Order, Find the Bug, and Robot Maze."><meta property="og:url" content="https://as2733055.github.io/cep_project/games.html"><meta property="og:site_name" content="CodePlay"><title>Games | CodePlay</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="css/style.css"></head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Play coding games with CodePlay and practice sequence, debugging, and problem solving.">
+    <meta name="theme-color" content="#17252a">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Games | CodePlay">
+    <meta property="og:description" content="Practice coding logic through Code Order, Find the Bug, and Robot Maze.">
+    <meta property="og:url" content="https://as2733055.github.io/cep_project/games.html">
+    <meta property="og:site_name" content="CodePlay">
+    <title>Games | CodePlay</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
 <body data-page="games">
-<header class="site-header"><div class="container nav-wrap"><a class="brand" href="index.html"><span class="brand-mark">&lt;/&gt;</span><span>CodePlay</span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation">Menu</button><nav id="main-navigation" class="main-nav" aria-label="Main navigation"><a data-nav="home" href="index.html">Home</a><a data-nav="learn" href="learn.html">Learn</a><a data-nav="games" href="games.html">Games</a><a data-nav="challenges" href="challenges.html">Challenges</a><a data-nav="quiz" href="quiz.html">Quiz</a><a data-nav="progress" href="progress.html">Progress</a><a data-nav="about" href="about.html">About</a></nav><div class="header-points" aria-label="Current points"><span aria-hidden="true">&#9733;</span> <span data-points>0</span></div></div></header>
-<main class="page-main"><div class="container page-intro"><p class="eyebrow">02 / Games</p><h1>Play your way into coding.</h1><p>Practice sequence, debugging, and problem solving through interactive activities. Each completed game earns points once.</p></div><div class="container game-list">
-<section class="game-panel" id="code-order-game"><div class="game-heading"><div><p class="section-kicker">Game 01 / Sequence</p><h2>Code Order</h2></div><span class="reward-tag">+10 points</span></div><p class="game-objective"><strong>Learning objective:</strong> Put instructions in the order a computer should follow.</p><p class="game-instructions">Move each instruction up or down until the robot can complete its journey from start to finish.</p><div class="order-list" data-order-list></div><div class="game-actions"><button class="button button-primary" type="button" data-submit-order>Check my order</button><button class="button button-secondary" type="button" data-reset-order>Reset</button></div><p class="game-feedback" data-order-feedback role="status"></p></section>
-<section class="game-panel" id="bug-game"><div class="game-heading"><div><p class="section-kicker">Game 02 / Debugging</p><h2>Find the Bug</h2></div><span class="reward-tag">+15 points</span></div><p class="game-objective"><strong>Learning objective:</strong> Notice which instruction makes a plan fail.</p><p class="game-instructions">Read each tiny program and select the instruction that contains the bug.</p><div data-bug-content></div><p class="game-feedback" data-bug-feedback role="status"></p></section>
-<section class="game-panel maze-panel" id="maze-game"><div class="game-heading"><div><p class="section-kicker">Game 03 / Main game</p><h2>Robot Maze</h2></div><span class="reward-tag">+20 per level</span></div><p class="game-objective"><strong>Learning objective:</strong> Plan a sequence, test it, and debug it when the robot gets stuck.</p><p class="game-instructions">Build a command sequence, then run it. Reach the green finish without hitting a wall or leaving the grid.</p><div class="maze-toolbar"><label for="maze-level">Level</label><select id="maze-level" data-maze-level></select><span data-maze-status>Build your code</span></div><div class="maze-layout"><div class="maze-grid" data-maze-grid role="grid" aria-label="Robot maze"></div><div class="command-builder"><p class="section-kicker">Your code</p><div class="command-list" data-command-list></div><div class="command-buttons"><button class="button button-secondary" type="button" data-command="forward">Move forward</button><button class="button button-secondary" type="button" data-command="left">Turn left</button><button class="button button-secondary" type="button" data-command="right">Turn right</button></div><div class="game-actions"><button class="button button-primary" type="button" data-run-maze>Run code</button><button class="button button-secondary" type="button" data-clear-maze>Clear code</button><button class="button button-secondary" type="button" data-reset-maze>Reset level</button></div></div></div><p class="game-feedback" data-maze-feedback role="status"></p></section>
-</div></main><footer class="site-footer"><div class="container footer-wrap"><a class="brand" href="index.html"><span class="brand-mark">&lt;/&gt;</span><span>CodePlay</span></a><p>Learn coding. Play with logic.</p></div></footer><div class="toast" data-toast role="status" aria-live="polite"></div><script src="js/config.js"></script><script src="js/storage.js"></script><script src="js/app.js"></script><script src="js/games.js"></script><script src="js/maze.js"></script></body></html>
+    <header class="site-header">
+        <div class="container nav-wrap"><a class="brand" href="index.html"><span
+                    class="brand-mark">&lt;/&gt;</span><span>CodePlay</span></a><button class="menu-toggle"
+                type="button" aria-expanded="false" aria-controls="main-navigation">Menu</button>
+            <nav id="main-navigation" class="main-nav" aria-label="Main navigation"><a data-nav="home"
+                    href="index.html">Home</a><a data-nav="learn" href="learn.html">Learn</a><a data-nav="games"
+                    href="games.html">Games</a><a data-nav="challenges" href="challenges.html">Challenges</a><a
+                    data-nav="quiz" href="quiz.html">Quiz</a><a data-nav="progress" href="progress.html">Progress</a><a
+                    data-nav="about" href="about.html">About</a></nav>
+            <div class="header-points" aria-label="Current points"><span aria-hidden="true">&#9733;</span> <span
+                    data-points>0</span></div>
+        </div>
+    </header>
+    <main class="page-main">
+        <div class="container page-intro">
+            <p class="eyebrow">02 / Games</p>
+            <h1>Play your way into coding.</h1>
+            <p>Practice sequence, debugging, and problem solving through interactive activities. Each completed game
+                earns points once.</p>
+        </div>
+        <div class="container game-list">
+            <section class="game-panel" id="code-order-game">
+                <div class="game-heading">
+                    <div>
+                        <p class="section-kicker">Game 01 / Sequence</p>
+                        <h2>Code Order</h2>
+                    </div><span class="reward-tag">+10 points</span>
+                </div>
+                <p class="game-objective"><strong>Learning objective:</strong> Put instructions in the order a computer
+                    should follow.</p>
+                <p class="game-instructions">Move each instruction up or down until the robot can complete its journey
+                    from start to finish.</p>
+                <div class="order-list" data-order-list></div>
+                <div class="game-actions"><button class="button button-primary" type="button" data-submit-order>Check my
+                        order</button><button class="button button-secondary" type="button"
+                        data-reset-order>Reset</button></div>
+                <p class="game-feedback" data-order-feedback role="status"></p>
+            </section>
+            <section class="game-panel" id="bug-game">
+                <div class="game-heading">
+                    <div>
+                        <p class="section-kicker">Game 02 / Debugging</p>
+                        <h2>Find the Bug</h2>
+                    </div><span class="reward-tag">+15 points</span>
+                </div>
+                <p class="game-objective"><strong>Learning objective:</strong> Notice which instruction makes a plan
+                    fail.</p>
+                <p class="game-instructions">Read each tiny program and select the instruction that contains the bug.
+                </p>
+                <div data-bug-content></div>
+                <p class="game-feedback" data-bug-feedback role="status"></p>
+            </section>
+            <section class="game-panel maze-panel" id="maze-game">
+                <div class="game-heading">
+                    <div>
+                        <p class="section-kicker">Game 03 / Main game</p>
+                        <h2>Robot Maze</h2>
+                    </div><span class="reward-tag">+20 per level</span>
+                </div>
+                <p class="game-objective"><strong>Learning objective:</strong> Plan a sequence, test it, and debug it
+                    when the robot gets stuck.</p>
+                <p class="game-instructions">Build a command sequence, then run it. Reach the green finish without
+                    hitting a wall or leaving the grid.</p>
+                <div class="maze-toolbar"><label for="maze-level">Level</label><select id="maze-level"
+                        data-maze-level></select><span data-maze-status>Build your code</span></div>
+                <div class="maze-layout">
+                    <div class="maze-grid" data-maze-grid role="grid" aria-label="Robot maze"></div>
+                    <div class="command-builder">
+                        <p class="section-kicker">Your code</p>
+                        <div class="command-list" data-command-list></div>
+                        <div class="command-buttons"><button class="button button-secondary" type="button"
+                                data-command="forward">Move forward</button><button class="button button-secondary"
+                                type="button" data-command="left">Turn left</button><button
+                                class="button button-secondary" type="button" data-command="right">Turn right</button>
+                        </div>
+                        <div class="game-actions"><button class="button button-primary" type="button" data-run-maze>Run
+                                code</button><button class="button button-secondary" type="button" data-clear-maze>Clear
+                                code</button><button class="button button-secondary" type="button" data-reset-maze>Reset
+                                level</button></div>
+                    </div>
+                </div>
+                <p class="game-feedback" data-maze-feedback role="status"></p>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="container footer-wrap"><a class="brand" href="index.html"><span
+                    class="brand-mark">&lt;/&gt;</span><span>CodePlay</span></a>
+            <p>Learn coding. Play with logic.</p>
+        </div>
+    </footer>
+    <div class="toast" data-toast role="status" aria-live="polite"></div>
+    <script src="js/config.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/games.js"></script>
+    <script src="js/maze.js"></script>
+</body>
+
+</html>
